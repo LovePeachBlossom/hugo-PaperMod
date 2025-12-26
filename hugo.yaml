@@ -1,6 +1,7 @@
 baseURL: "https://wf0904.cn/"
 languageCode: "zh-cn"
 title: "我的个人博客"
+theme: "PaperMod"
 
 pagination:
   pagerSize: 10 # 每页显示多少篇文章
@@ -10,52 +11,93 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-# 这一步是开启搜索功能的关键！
-outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
+# 谷歌分析 (可选，后续可以添加)
+# googleAnalytics: UA-123-45
+
+minify:
+  disableXML: true
+  minifyOutput: true
 
 params:
-  env: production
-  defaultTheme: auto
-  
-  # 首页左上角的标题设置
-  label:
-    text: "My Blog"
-    icon: /apple-touch-icon.png
-    iconHeight: 35
+  env: production # to enable google analytics
+  title: "我的个人博客"
+  description: "分享技术心得与生活中有趣的事物"
+  keywords: [Blog, Tech, Life, Hugo]
+  author: Me
+  # author: ["Me", "You"] # multiple authors
+  images: ["<link or path of image for opengraph, twitter-cards>"]
+  DateFormat: "2006-01-02"
+  defaultTheme: auto # dark, light, auto
+  disableThemeToggle: false
 
-  # 首页个人名片
-  profileMode:
-    enabled: true
-    title: "你好，我是博主" # 改成你的名字
-    subtitle: "热爱技术，热爱生活"
-    # imageUrl: "https://github.com/LovePeachBlossom.png" # 直接用GitHub头像
-    buttons:
-      - name: 归档
-        url: "/archives"
-      - name: 搜索
-        url: "/search"
+  # ---------------------------------------------------------------
+  # 首页个人信息卡片 (面试官的第一印象)
+  # ---------------------------------------------------------------
+  homeInfoParams:
+    Title: "Hi there 👋"
+    Content: >
+      欢迎来到我的数字花园。
+      
+      在这里，我记录 **技术成长的脚印** 👨‍💻，
+      
+      也分享 **光影世界的感动** 🍿。
+      
+      希望你能在这里发现有趣的内容。
 
-  # 页面底部的社交图标 (去 simpleicons.org 找名字)
+  # ---------------------------------------------------------------
+  # 社交图标 (填入你的实际链接，方便别人联系你)
+  # ---------------------------------------------------------------
   socialIcons:
     - name: github
       url: "https://github.com/LovePeachBlossom"
-    - name: bilibili
-      url: "https://space.bilibili.com/407681508"
     - name: email
       url: "mailto:932505460@qq.com"
+    - name: bilibili
+      url: "https://space.bilibili.com/407681508"
 
-# 顶部的导航栏
+  # ---------------------------------------------------------------
+  # 界面与体验优化
+  # ---------------------------------------------------------------
+  ShowShareButtons: true       # 底部显示分享按钮 (方便朋友转发)
+  ShowReadingTime: true        # 显示阅读时长 (体现专业性)
+  ShowPostNavLinks: true       # 显示上一篇/下一篇
+  ShowBreadCrumbs: true        # 显示面包屑导航
+  ShowCodeCopyButtons: true    # 代码块显示复制按钮 (技术博客必备)
+  
+  # 封面图设置 (对影评至关重要)
+  cover:
+    hidden: false      # false = 在文章中显示封面
+    hiddenInList: false # false = 在首页列表中也显示封面
+    responsiveImages: true
+
+# ---------------------------------------------------------------
+# 导航栏设置 (区分 "硬核知识" 和 "生活趣味")
+# ---------------------------------------------------------------
 menu:
   main:
+    - identifier: tech
+      name: 💻 技术笔记
+      url: /categories/tech/
+      weight: 10
+    - identifier: life
+      name: 🍿 生活影音
+      url: /categories/life/
+      weight: 20
+    - identifier: archives
+      name: 📂 归档
+      url: /archives/
+      weight: 30
     - identifier: search
       name: 🔍 搜索
       url: /search/
-      weight: 10
-    - identifier: archives
-      name: ⏱️ 归档
-      url: /archives/
-      weight: 20
+      weight: 40
+
+# 代码高亮设置
+markup:
+  highlight:
+    noClasses: false
+    # anchorLineNos: true
+    # codeFences: true
+    # guessSyntax: true
+    # lineNos: true
+    # style: monokai
