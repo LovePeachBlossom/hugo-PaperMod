@@ -38,9 +38,7 @@ TocOpen: true
 
 虽然还不能看第8集，但官方放出的倒计时预告片已经让我手心出汗了：
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-    <iframe src="//player.bilibili.com/player.html?bvid=BV1vF411z7K7&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-</div>
+{{< bilibili BV1vF411z7K7 >}}
 
 （点击播放，感受大战前的压抑氛围 🎵）
 
