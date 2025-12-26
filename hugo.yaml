@@ -93,6 +93,9 @@ menu:
 
 # 代码高亮设置
 markup:
+  goldmark:
+    renderer:
+      unsafe: true
   highlight:
     noClasses: false
     # anchorLineNos: true
