@@ -1,7 +1,6 @@
 baseURL: "https://wf0904.cn/"
 languageCode: "zh-cn"
 title: "我的个人博客"
-theme: "PaperMod"
 
 pagination:
   pagerSize: 10 # 每页显示多少篇文章
