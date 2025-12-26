@@ -1,26 +1,27 @@
+---
 title: "📺 剧评 | 当复古科幻遇见成长冒险：《怪奇物语》为什么值得一刷再刷"
 date: 2023-10-27T10:00:00+08:00
 draft: false
 author: "Me"
 
-这是一个数组，可以添加多个标签
-
+# 这是一个数组，可以添加多个标签
 tags: ["美剧", "Netflix", "科幻", "复古", "怪奇物语"]
 
-对应我们在 hugo.yaml 里设置的导航栏分类
-
+# 对应我们在 hugo.yaml 里设置的导航栏分类
 categories: ["life"]
 
-封面图设置
-
+# 封面图设置
 cover:
-image: "images/stranger-things-cover.jpg"
-
-
+    image: "images/stranger-things-cover.jpg"
+    alt: "Stranger Things Cover"
+    caption: ""
+    relative: false
 
 description: "霍金斯镇的灯光再次闪烁，颠倒世界的入口已然打开。这不仅仅是一部惊悚剧，更是一封写给80年代的情书。"
 
-showToc: true TocOpen: true
+showToc: true
+TocOpen: true
+---
 
 "Friends don't lie." —— Eleven
 
@@ -44,7 +45,7 @@ showToc: true TocOpen: true
 
 整部剧的色调非常迷人。从第一季的复古暖色，到进入“颠倒世界（The Upside Down）”后的冷冽蓝灰，色彩本身就在讲故事。
 
-{{< figure src="https://www.google.com/search?q=https://images.unsplash.com/photo-1574375927938-d5a98e8efe85%3Fauto%3Dformat%26fit%3Dcrop%26q%3D80%26w%3D1000" title="80年代的霓虹美学" caption="剧中的霓虹灯光不仅是装饰，更是沟通的媒介。" >}}
+{{< figure src="https://images.unsplash.com/photo-1574375927938-d5a98e8efe85?auto=format&fit=crop&q=80&w=1000" title="80年代的霓虹美学" caption="剧中的霓虹灯光不仅是装饰，更是沟通的媒介。" >}}
 
 2. 角色成长的弧光
 
