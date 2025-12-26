@@ -5,22 +5,86 @@
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
+<!-- 隐藏播放器，只保留音乐功能 -->
 <meting-js
     server="netease"
     type="playlist"
     id="26093064"
-    fixed="true"
-    autoplay="false"
+    fixed="false"
+    autoplay="true"
     loop="all"
     order="list"
     preload="auto"
     list-folded="true"
     list-max-height="500px"
-    lrc-type="1"
-    theme="#ff3d3d">
+    lrc-type="0"
+    theme="#ff3d3d"
+    style="display: none;">
 </meting-js>
 
+<!-- 右上角音符控制按钮 -->
+<div id="music-control" style="position: fixed; top: 20px; right: 20px; z-index: 999999; cursor: pointer;">
+    <button id="music-toggle" style="
+        background: rgba(255, 61, 61, 0.8);
+        border: none;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    " title="点击控制音乐播放">
+        🎵
+    </button>
+</div>
+
 <script>
+// 等待 APlayer 加载完成
+setTimeout(function() {
+    var musicToggle = document.getElementById('music-toggle');
+    var aplayer = document.querySelector('meting-js').__controller;
+    
+    if(aplayer) {
+        // 点击按钮控制播放/暂停
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if(aplayer.audio.paused) {
+                aplayer.play();
+                musicToggle.style.background = 'rgba(255, 61, 61, 0.8)';
+            } else {
+                aplayer.pause();
+                musicToggle.style.background = 'rgba(150, 150, 150, 0.8)';
+            }
+        });
+        
+        // 页面加载自动播放
+        aplayer.play();
+        
+        // 监听播放/暂停事件，更新按钮样式
+        aplayer.audio.addEventListener('play', function() {
+            musicToggle.style.background = 'rgba(255, 61, 61, 0.8)';
+        });
+        
+        aplayer.audio.addEventListener('pause', function() {
+            musicToggle.style.background = 'rgba(150, 150, 150, 0.8)';
+        });
+    }
+}, 1000);
+
+// 鼠标悬停效果
+document.getElementById('music-toggle').addEventListener('mouseenter', function() {
+    this.style.transform = 'scale(1.1)';
+});
+
+document.getElementById('music-toggle').addEventListener('mouseleave', function() {
+    this.style.transform = 'scale(1)';
+});
+
 (function() {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
     function(callback) {
@@ -44,7 +108,7 @@
     canvas.style.position = "fixed";
     canvas.style.top = "0";
     canvas.style.left = "0";
-    canvas.style.zIndex = "999999"; // 层级最高
+    canvas.style.zIndex = "999998"; // 略低于音符按钮
     canvas.style.pointerEvents = "none"; // 关键：让鼠标事件穿透 canvas，不影响点击链接
 
     document.body.appendChild(canvas);
