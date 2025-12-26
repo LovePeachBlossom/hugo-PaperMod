@@ -2,34 +2,59 @@ baseURL: "https://wf0904.cn/"
 languageCode: "zh-cn"
 title: "我的个人博客"
 
+paginate: 10 # 每页显示多少篇文章
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+# 这一步是开启搜索功能的关键！
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
 params:
   env: production
   defaultTheme: auto
   
-  # 首页个人信息 (名片模式)
+  # 首页左上角的标题设置
+  label:
+    text: "My Blog"
+    icon: /apple-touch-icon.png
+    iconHeight: 35
+
+  # 首页个人名片
   profileMode:
     enabled: true
-    title: "你好，我是博主"
-    subtitle: "欢迎来到我的个人博客"
-    # imageUrl: "https://github.com/你的用户名.png" # 稍后可以设置头像
+    title: "你好，我是博主" # 改成你的名字
+    subtitle: "热爱技术，热爱生活"
+    # imageUrl: "https://github.com/你的用户名.png" # 直接用GitHub头像
     buttons:
-      - name: GitHub
-        url: "https://github.com/"
-      - name: 联系我
-        url: "mailto:你的邮箱@example.com"
+      - name: 归档
+        url: "/archives"
+      - name: 搜索
+        url: "/search"
 
-  # 社交图标 (网页底部)
+  # 页面底部的社交图标 (去 simpleicons.org 找名字)
   socialIcons:
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/你的用户名"
+    - name: bilibili
+      url: "https://space.bilibili.com/你的ID"
+    - name: email
+      url: "mailto:你的邮箱@example.com"
 
+# 顶部的导航栏
 menu:
   main:
     - identifier: search
-      name: 搜索
+      name: 🔍 搜索
       url: /search/
       weight: 10
     - identifier: archives
-      name: 归档
+      name: ⏱️ 归档
       url: /archives/
       weight: 20
