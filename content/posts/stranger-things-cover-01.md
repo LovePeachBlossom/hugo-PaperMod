@@ -11,13 +11,12 @@ tags: ["美剧", "Netflix", "科幻", "复古", "怪奇物语"]
 
 categories: ["life"]
 
-封面图设置 (请确保 static/images/ 下有这张图片，或者换成网络图片链接)
+封面图设置
 
 cover:
-image: "https://www.google.com/search?q=https://images.unsplash.com/photo-1626814026160-2237a95fc5a0%3Fq%3D80%26w%3D2070%26auto%3Dformat%26fit%3Dcrop" # 这里暂时用了一张风格类似的Unsplash图片作为占位符
-alt: "Stranger Things Vibe"
-caption: "图片来源: Unsplash"
-relative: false # 如果是本地图片(static下)，改为 true
+image: "images/stranger-things-cover.jpg"
+
+
 
 description: "霍金斯镇的灯光再次闪烁，颠倒世界的入口已然打开。这不仅仅是一部惊悚剧，更是一封写给80年代的情书。"
 
