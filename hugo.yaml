@@ -98,6 +98,8 @@ markup:
       unsafe: true
   highlight:
     noClasses: false
+    style: dracula    # 使用 Dracula 配色，完美契合怪奇物语风格
+    lineNos: true     # 显示行号，增加技术感
     # anchorLineNos: true
     # codeFences: true
     # guessSyntax: true

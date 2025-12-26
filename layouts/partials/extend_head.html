@@ -2,3 +2,32 @@
 {{- /*     Insert any custom code (web-analytics, resources, etc.) - it will appear in the <head></head> section of every page. */ -}}
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
 {{- /* Head custom content area end */ -}}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "TVSeries",
+    "name": "Stranger Things",
+    "containsSeason": {
+      "@type": "TVSeason",
+      "seasonNumber": "5",
+      "episode": {
+        "@type": "TVEpisode",
+        "episodeNumber": "7",
+        "name": "The Bridge"
+      }
+    }
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "5",
+    "bestRating": "5"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Me"
+  }
+}
+</script>

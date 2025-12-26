@@ -1,0 +1,6 @@
+<details class="spoiler">
+    <summary>{{.Get "title" | default "剧透慎入" }}</summary>
+    <div class="spoiler-content">
+        {{.Inner | markdownify }}
+    </div>
+</details>
