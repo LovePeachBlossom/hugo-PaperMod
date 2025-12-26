@@ -1,30 +1,18 @@
-/* 导入字体 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@300;700&display=swap');
+/* -----------------------------------------------------------
+   Stranger Things Theme - Custom Override for PaperMod
+   文件路径: assets/css/extended/stranger-theme.css
+   ----------------------------------------------------------- */
 
 :root {
-    /* 覆盖 PaperMod 默认变量 */
-    --theme: #0f0f13;
-    --entry: #1a1a20;
-    --primary: #e0e0e0;
-    --secondary: #a0a0a0;
-    --tertiary: #2d2d35;
-    --content: #cfcfcf;
-    --hljs-bg: #151518;
-    --code-bg: #222228;
-    --border: #333333;
+    /* 覆盖 PaperMod 默认深色变量，营造深邃的“颠倒世界”氛围 */
+    --theme: #0f0f13;       /* 极深的蓝黑色背景 */
+    --entry: #1a1a20;       /* 文章卡片背景 */
+    --primary: #e0e0e0;     /* 主要文字颜色（降低对比度，模拟CRT柔和感） */
+    --secondary: #a0a0a0;   /* 次要文字颜色 */
+    --border: #333333;      /* 边框颜色 */
     
-    /* 自定义强调色 */
-    --stranger-red: #ff3d3d;
-    --upside-blue: #091a28;
-}
-
-body {
-    font-family: 'Merriweather', serif;
-}
-
-h1, h2, h3, h4, h5, h6, .menu, .logo {
-    font-family: 'Inter', sans-serif;
-    letter-spacing: -0.02em;
+    /* 核心强调色：怪奇物语红 */
+    --stranger-red: #ff3d3d; 
 }
 
 /* 链接动效：模拟霓虹灯闪烁 */
@@ -33,59 +21,42 @@ a {
     transition: text-shadow 0.3s ease;
 }
 
+/* 鼠标悬停时产生红色光晕 */
 a:hover {
     text-shadow: 0 0 8px rgba(255, 61, 61, 0.4);
     text-decoration-color: var(--stranger-red);
 }
 
-/* 剧透块样式 (Spoiler) */
+/* -----------------------------------------------------------
+   功能组件样式
+   ----------------------------------------------------------- */
+
+/* 1. 剧透折叠块 (Spoiler) */
 details.spoiler {
-    background: rgba(255, 61, 61, 0.05);
+    background: rgba(255, 61, 61, 0.05); /* 淡淡的红色背景 */
     border: 1px solid var(--border);
     border-left: 3px solid var(--stranger-red);
     border-radius: 4px;
     margin: 1.5rem 0;
     padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
 }
 
 details.spoiler summary {
     cursor: pointer;
     font-weight: bold;
     color: var(--stranger-red);
-    outline: none;
-    list-style: none; /* 隐藏默认三角 */
 }
 
-details.spoiler summary::-webkit-details-marker {
-    display: none;
-}
-
-details.spoiler summary::after {
-    content: "⚠️ 点击查看剧透内容";
-    font-size: 0.9em;
-}
-
-details.spoiler[open] summary {
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.5rem;
-}
-
-details.spoiler[open] summary::after {
-    content: "▽ 剧透警告";
-}
-
-/* 响应式视频容器 */
+/* 2. 响应式 Bilibili 视频容器 */
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%; /* 16:9 比例 */
     padding-top: 25px;
     height: 0;
     margin: 20px 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .video-container iframe {
@@ -96,29 +67,3 @@ details.spoiler[open] summary::after {
     height: 100%;
     border: none;
 }
-
-/* 提示块样式 (Admonitions) */
-.admonition {
-    padding: 1rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid;
-    background: var(--entry);
-    border-radius: 0 4px 4px 0;
-}
-
-.admonition-title {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-}
-
-.admonition.note { border-color: #448aff; }
-.admonition.note.admonition-title { color: #448aff; }
-
-.admonition.warning { border-color: #ffb74d; }
-.admonition.warning.admonition-title { color: #ffb74d; }
-
-.admonition.danger { border-color: var(--stranger-red); }
-.admonition.danger.admonition-title { color: var(--stranger-red); }

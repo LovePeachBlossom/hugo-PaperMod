@@ -2,106 +2,95 @@ baseURL: "https://wf0904.cn/"
 languageCode: "zh-cn"
 title: "我的个人博客"
 
-pagination:
-  pagerSize: 10 # 每页显示多少篇文章
-
+# 启用 robots.txt 生成，对 SEO 友好
 enableRobotsTXT: true
+
+# 生产环境构建设置
 buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-# 谷歌分析 (可选，后续可以添加)
-# googleAnalytics: UA-123-45
+# 分页设置：每页 10 篇文章
+pagination:
+  pagerSize: 10
 
-minify:
-  disableXML: true
-  minifyOutput: true
-
-params:
-  env: production # to enable google analytics
-  title: "我的个人博客"
-  description: "分享技术心得与生活中有趣的事物"
-  keywords: [Blog, Tech, Life, Hugo]
-  author: Me
-  # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
-  DateFormat: "2006-01-02"
-  defaultTheme: auto # dark, light, auto
-  disableThemeToggle: false
-
-  # ---------------------------------------------------------------
-  # 首页个人信息卡片 (面试官的第一印象)
-  # ---------------------------------------------------------------
-  homeInfoParams:
-    Title: "Hi there 👋"
-    Content: >
-      欢迎来到我的数字花园。
-      
-      在这里，我记录 **技术成长的脚印** 👨‍💻，
-      
-      也分享 **光影世界的感动** 🍿。
-      
-      希望你能在这里发现有趣的内容。
-
-  # ---------------------------------------------------------------
-  # 社交图标 (填入你的实际链接，方便别人联系你)
-  # ---------------------------------------------------------------
-  socialIcons:
-    - name: github
-      url: "https://github.com/LovePeachBlossom"
-    - name: email
-      url: "mailto:932505460@qq.com"
-    - name: bilibili
-      url: "https://space.bilibili.com/407681508"
-
-  # ---------------------------------------------------------------
-  # 界面与体验优化
-  # ---------------------------------------------------------------
-  ShowShareButtons: true       # 底部显示分享按钮 (方便朋友转发)
-  ShowReadingTime: true        # 显示阅读时长 (体现专业性)
-  ShowPostNavLinks: true       # 显示上一篇/下一篇
-  ShowBreadCrumbs: true        # 显示面包屑导航
-  ShowCodeCopyButtons: true    # 代码块显示复制按钮 (技术博客必备)
-  
-  # 封面图设置 (对影评至关重要)
-  cover:
-    hidden: false      # false = 在文章中显示封面
-    hiddenInList: false # false = 在首页列表中也显示封面
-    responsiveImages: true
-
-# ---------------------------------------------------------------
-# 导航栏设置 (区分 "硬核知识" 和 "生活趣味")
-# ---------------------------------------------------------------
-menu:
-  main:
-    - identifier: tech
-      name: 💻 技术笔记
-      url: /categories/tech/
-      weight: 10
-    - identifier: life
-      name: 🍿 生活影音
-      url: /categories/life/
-      weight: 20
-    - identifier: archives
-      name: 📂 归档
-      url: /archives/
-      weight: 30
-    - identifier: search
-      name: 🔍 搜索
-      url: /search/
-      weight: 40
-
-# 代码高亮设置
+# -------------------------------------------------------------------------
+# 新增核心配置：Markdown 渲染与代码高亮
+# -------------------------------------------------------------------------
 markup:
   goldmark:
     renderer:
-      unsafe: true
+      unsafe: true # 【关键】允许在 Markdown 中使用 HTML，这是 Bilibili 和剧透组件必须的！
   highlight:
     noClasses: false
-    style: dracula    # 使用 Dracula 配色，完美契合怪奇物语风格
-    lineNos: true     # 显示行号，增加技术感
-    # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
-    # lineNos: true
-    # style: monokai
+    # 使用 Dracula 配色，完美契合怪奇物语的深色氛围
+    style: dracula
+    # 显示行号，增加技术博客的专业感
+    lineNos: true
+    # 允许代码块内联样式
+    guessSyntax: true
+
+# 输出格式设置，保留 JSON 以支持搜索功能
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# -------------------------------------------------------------------------
+# 主题参数设置 (PaperMod)
+# -------------------------------------------------------------------------
+params:
+  env: production
+  defaultTheme: auto # 自动跟随系统，但我们会用 CSS 强制优化深色模式体验
+  
+  # 顶部左侧的站点名称与图标
+  label:
+    text: "My Blog"
+    icon: /apple-touch-icon.png
+    iconHeight: 35
+
+  # 首页个人信息卡片
+  profileMode:
+    enabled: true
+    title: "你好，我是博主"
+    subtitle: "热爱技术，热爱生活"
+    # imageUrl: "https://github.com/LovePeachBlossom.png" # 建议取消注释并确头像可用
+    imageWidth: 120
+    imageHeight: 120
+    buttons:
+      - name: ⏱️ 归档
+        url: /archives
+      - name: 🔍 搜索
+        url: /search
+
+  # 社交链接
+  socialIcons:
+    - name: github
+      url: "https://github.com/LovePeachBlossom"
+    - name: bilibili
+      url: "https://space.bilibili.com/407681508"
+    - name: email
+      url: "mailto:932505460@qq.com"
+
+  # 【新增】SEO 与分享优化
+  # 当文章有封面图时，分享到社交媒体会显示大图
+  schema:
+    publisherType: Person
+    name: Me # 替换为您的名字
+  
+  images: ["apple-touch-icon.png"] # 默认分享图
+
+# -------------------------------------------------------------------------
+# 顶部导航栏
+# -------------------------------------------------------------------------
+menu:
+  main:
+    - identifier: search
+      name: 🔍 搜索
+      url: /search/
+      weight: 10
+    - identifier: archives
+      name: ⏱️ 归档
+      url: /archives/
+      weight: 20
