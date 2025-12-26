@@ -38,7 +38,7 @@ TocOpen: true
 
 虽然还不能看第8集，但官方放出的倒计时预告片已经让我手心出汗了：
 
-{{< bilibili BV1vF411z7K7 >}}
+{{< bilibili BV1otyaBbEQg >}}
 
 （点击播放，感受大战前的压抑氛围 🎵）
 
