@@ -38,7 +38,9 @@ TocOpen: true
 
 虽然还不能看第8集，但官方放出的倒计时预告片已经让我手心出汗了：
 
-{{< youtube yQEondeGvKo >}}
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe src="//player.bilibili.com/player.html?bvid=BV1vF411z7K7&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+</div>
 
 （点击播放，感受大战前的压抑氛围 🎵）
 
@@ -51,8 +53,6 @@ TocOpen: true
 这集没有大规模的战斗，而是战略部署。所有的小分队终于在霍金斯高中（Hawkins High）的废墟中汇合了。但结尾处，当 Vecna 的钟声再次响起，那是宣战的号角。
 
 我们看到了十一（Eleven）流鼻血倒下的画面——这是否意味着她的力量已经透支？
-
-{{< figure src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop" title="最终防线" caption="他们站在那里，面对着不可战胜的黑暗。" >}}
 
 2. 威尔与颠倒世界的连接
 
