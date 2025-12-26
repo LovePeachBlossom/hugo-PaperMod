@@ -32,7 +32,7 @@ params:
     enabled: true
     title: "你好，我是博主" # 改成你的名字
     subtitle: "热爱技术，热爱生活"
-    # imageUrl: "https://github.com/你的用户名.png" # 直接用GitHub头像
+    # imageUrl: "https://github.com/LovePeachBlossom.png" # 直接用GitHub头像
     buttons:
       - name: 归档
         url: "/archives"
@@ -42,11 +42,11 @@ params:
   # 页面底部的社交图标 (去 simpleicons.org 找名字)
   socialIcons:
     - name: github
-      url: "https://github.com/你的用户名"
+      url: "https://github.com/LovePeachBlossom"
     - name: bilibili
-      url: "https://space.bilibili.com/你的ID"
+      url: "https://space.bilibili.com/407681508"
     - name: email
-      url: "mailto:你的邮箱@example.com"
+      url: "mailto:932505460@qq.com"
 
 # 顶部的导航栏
 menu:
