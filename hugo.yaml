@@ -53,7 +53,7 @@ params:
   # 首页个人信息卡片
   profileMode:
     enabled: true
-    title: "你好，我是博主"
+    title: "你好，欢迎来到我的博客"
     subtitle: "热爱技术，热爱生活"
     # imageUrl: "https://github.com/LovePeachBlossom.png" # 建议取消注释并确头像可用
     imageWidth: 120
