@@ -148,3 +148,12 @@
     });
 </script>
 {{- end }}
+
+{{- /* 密码保护功能 */}}
+{{- $passwordProtect := resources.Get "js/password-protect.js" | resources.Minify }}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $passwordProtect = $passwordProtect | fingerprint }}
+<script defer src="{{ $passwordProtect.RelPermalink }}" integrity="{{ $passwordProtect.Data.Integrity }}"></script>
+{{- else }}
+<script defer src="{{ $passwordProtect.RelPermalink }}"></script>
+{{- end }}

@@ -47,7 +47,7 @@ params:
   # 顶部左侧的站点名称与图标
   label:
     text: "My Blog"
-    icon: /apple-touch-icon.png
+    # icon: /apple-touch-icon.png  # 取消注释并添加图标文件到 static/ 目录
     iconHeight: 35
 
   # 首页个人信息卡片
@@ -79,7 +79,14 @@ params:
     publisherType: Person
     name: Me # 替换为您的名字
   
-  images: ["apple-touch-icon.png"] # 默认分享图
+  # images: ["apple-touch-icon.png"] # 默认分享图（取消注释并添加图标文件后启用）
+
+  # 【新增】密码保护功能说明
+  # 1. 为文章添加密码保护：在文章的 front matter 中添加：
+  #    passwordHash: "哈希值"  # 使用 /password-generator.html 工具生成
+  #    passwordHint: "密码提示"  # 可选
+  # 2. 访问 /password-generator.html 生成密码哈希值
+  # 3. 密码验证成功后会在浏览器中记住解锁状态
 
 # -------------------------------------------------------------------------
 # 顶部导航栏
@@ -94,3 +101,7 @@ menu:
       name: ⏱️ 归档
       url: /archives/
       weight: 20
+    - identifier: protected
+      name: 🔒 密码保护
+      url: /protected/
+      weight: 30
