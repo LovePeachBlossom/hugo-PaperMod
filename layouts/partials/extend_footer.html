@@ -1,9 +1,9 @@
 {{- /* Footer custom content area start */ -}}
 {{- /*     Insert any custom code web-analytics, resources, etc. here */ -}}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css">
 
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script> -->
 
 <!-- 隐藏播放器，改为本地文件播放以解决30秒限制 -->
 <!-- 请将音乐文件放入 static/music/ 目录，并修改下方的 url -->
@@ -91,10 +91,10 @@
 var aplayer = new APlayer({
     container: document.getElementById('aplayer'),
     fixed: false,
-    autoplay: true,
+    autoplay: false,
     loop: 'all',
     order: 'list',
-    preload: 'auto',
+    preload: 'none',
     listFolded: true,
     listMaxHeight: '500px',
     lrcType: 0,
