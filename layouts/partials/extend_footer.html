@@ -5,7 +5,11 @@
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-<!-- 隐藏播放器，只保留音乐功能 -->
+<!-- 隐藏播放器，改为本地文件播放以解决30秒限制 -->
+<!-- 请将音乐文件放入 static/music/ 目录，并修改下方的 url -->
+<div id="aplayer" style="display:none;"></div>
+
+<!-- 原有的 meting-js 代码已注释
 <meting-js
     server="netease"
     type="song"
@@ -21,6 +25,7 @@
     theme="#ff3d3d"
     style="display: none;">
 </meting-js>
+-->
 
 <style>
     #music-control {
@@ -82,46 +87,55 @@
 </div>
 
 <script>
-// 等待 APlayer 加载完成
-var checkAplayerInterval = setInterval(function() {
-    var metingElement = document.querySelector('meting-js');
-    if (!metingElement) return; // 元素还没加载出来
+// 初始化 APlayer
+var aplayer = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: false,
+    autoplay: true,
+    loop: 'all',
+    order: 'list',
+    preload: 'auto',
+    listFolded: true,
+    listMaxHeight: '500px',
+    lrcType: 0,
+    theme: '#ff3d3d',
+    audio: [{
+        name: '背景音乐', // 歌曲名称
+        artist: '博客音乐', // 艺术家
+        url: '/music/bgm.mp3', // 音乐文件路径，请将文件放在 static/music/bgm.mp3
+        cover: '' // 封面图片
+    }]
+});
 
-    // 尝试获取 aplayer 实例，兼容不同版本的 meting-js
-    var aplayer = metingElement.aplayer || metingElement.__controller;
+// 音乐控制逻辑
+(function() {
+    var musicToggle = document.getElementById('music-toggle');
+    var musicIcon = musicToggle.querySelector('.music-note-icon');
     
-    if(aplayer) {
-        clearInterval(checkAplayerInterval); // 找到了，停止轮询
-        console.log("Music player initialized");
-
-        var musicToggle = document.getElementById('music-toggle');
-        var musicIcon = musicToggle.querySelector('.music-note-icon');
-        
-        // 初始状态检查
-        if(!aplayer.audio.paused) {
-            musicIcon.classList.add('music-rotating');
-        }
-
-        // 点击按钮控制播放/暂停
-        musicToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if(aplayer.audio.paused) {
-                aplayer.play();
-            } else {
-                aplayer.pause();
-            }
-        });
-        
-        // 监听播放/暂停事件，更新样式
-        aplayer.audio.addEventListener('play', function() {
-            musicIcon.classList.add('music-rotating');
-        });
-        
-        aplayer.audio.addEventListener('pause', function() {
-            musicIcon.classList.remove('music-rotating');
-        });
+    // 初始状态检查
+    if(!aplayer.audio.paused) {
+        musicIcon.classList.add('music-rotating');
     }
-}, 500); // 每 500ms 检查一次
+
+    // 点击按钮控制播放/暂停
+    musicToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if(aplayer.audio.paused) {
+            aplayer.play();
+        } else {
+            aplayer.pause();
+        }
+    });
+    
+    // 监听播放/暂停事件，更新样式
+    aplayer.audio.addEventListener('play', function() {
+        musicIcon.classList.add('music-rotating');
+    });
+    
+    aplayer.audio.addEventListener('pause', function() {
+        musicIcon.classList.remove('music-rotating');
+    });
+})();
 
 (function() {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||

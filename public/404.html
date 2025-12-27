@@ -177,21 +177,10 @@
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
 
-<meting-js
-    server="netease"
-    type="song"
-    id="28191836"
-    fixed="false"
-    autoplay="true"
-    loop="all"
-    order="list"
-    preload="auto"
-    list-folded="true"
-    list-max-height="500px"
-    lrc-type="0"
-    theme="#ff3d3d"
-    style="display: none;">
-</meting-js>
+
+<div id="aplayer" style="display:none;"></div>
+
+
 
 <style>
     #music-control {
@@ -254,45 +243,54 @@
 
 <script>
 
-var checkAplayerInterval = setInterval(function() {
-    var metingElement = document.querySelector('meting-js');
-    if (!metingElement) return; 
+var aplayer = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: false,
+    autoplay: true,
+    loop: 'all',
+    order: 'list',
+    preload: 'auto',
+    listFolded: true,
+    listMaxHeight: '500px',
+    lrcType: 0,
+    theme: '#ff3d3d',
+    audio: [{
+        name: '背景音乐', 
+        artist: '博客音乐', 
+        url: '/music/bgm.mp3', 
+        cover: '' 
+    }]
+});
 
+
+(function() {
+    var musicToggle = document.getElementById('music-toggle');
+    var musicIcon = musicToggle.querySelector('.music-note-icon');
     
-    var aplayer = metingElement.aplayer || metingElement.__controller;
     
-    if(aplayer) {
-        clearInterval(checkAplayerInterval); 
-        console.log("Music player initialized");
-
-        var musicToggle = document.getElementById('music-toggle');
-        var musicIcon = musicToggle.querySelector('.music-note-icon');
-        
-        
-        if(!aplayer.audio.paused) {
-            musicIcon.classList.add('music-rotating');
-        }
-
-        
-        musicToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if(aplayer.audio.paused) {
-                aplayer.play();
-            } else {
-                aplayer.pause();
-            }
-        });
-        
-        
-        aplayer.audio.addEventListener('play', function() {
-            musicIcon.classList.add('music-rotating');
-        });
-        
-        aplayer.audio.addEventListener('pause', function() {
-            musicIcon.classList.remove('music-rotating');
-        });
+    if(!aplayer.audio.paused) {
+        musicIcon.classList.add('music-rotating');
     }
-}, 500); 
+
+    
+    musicToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if(aplayer.audio.paused) {
+            aplayer.play();
+        } else {
+            aplayer.pause();
+        }
+    });
+    
+    
+    aplayer.audio.addEventListener('play', function() {
+        musicIcon.classList.add('music-rotating');
+    });
+    
+    aplayer.audio.addEventListener('pause', function() {
+        musicIcon.classList.remove('music-rotating');
+    });
+})();
 
 (function() {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
