@@ -1,5 +1,333 @@
-/*
-This is just a placeholder blank stylesheet so as to support adding custom styles budled with theme's default styles
+/* Global Component Styles for Hugo PaperMod */
 
-Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
-*/
+/* -----------------------------------------------------------
+   1. CSS Variables for Components
+   ----------------------------------------------------------- */
+:root {
+    /* Component Colors - Light Mode Defaults */
+    --bg-card: #fffbf0;
+    --text-card: #856404;
+    --border-card: #ffc107;
+    
+    --bg-budget: #e8f5e9;
+    --text-budget: #2e7d32;
+    --border-budget: #4caf50;
+    
+    --bg-tip: #f0f7ff;
+    --text-tip: #004085;
+    --border-tip: #cce5ff;
+    
+    --bg-guide: #2c3e50;
+    --text-guide: #ecf0f1;
+    
+    --timeline-line: #e0e0e0;
+    --timeline-dot-bg: #fff;
+    
+    --shadow: 0 4px 6px rgba(0,0,0,0.05);
+    --radius: 12px;
+    
+    /* Default Accent (can be overridden) */
+    --accent: var(--primary); 
+}
+
+:root[data-theme="dark"] {
+    /* Component Colors - Dark Mode Defaults */
+    --bg-card: #2d2b20;
+    --text-card: #e6c675;
+    --border-card: #bfa15f;
+    
+    --bg-budget: #1b2e1e;
+    --text-budget: #a5d6a7;
+    --border-budget: #2e4c32;
+    
+    --bg-tip: #1a2633;
+    --text-tip: #90caf9;
+    --border-tip: #1e3a5f;
+    
+    --bg-guide: #1e272e;
+    --text-guide: #bdc3c7;
+    
+    --timeline-line: #444;
+    --timeline-dot-bg: #1d1e20;
+    
+    --shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* -----------------------------------------------------------
+   Typography Enhancements
+   ----------------------------------------------------------- */
+h2 {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-top: 40px;
+    color: var(--accent);
+}
+
+h3 {
+    margin-top: 30px;
+    border-left: 4px solid var(--accent-secondary, var(--secondary));
+    padding-left: 12px;
+}
+
+/* -----------------------------------------------------------
+   2. Alert Box Component
+   ----------------------------------------------------------- */
+.alert-box {
+    background-color: var(--bg-card);
+    border-left: 4px solid var(--border-card);
+    color: var(--text-card);
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+}
+
+.alert-box strong { color: #d32f2f; }
+:root[data-theme="dark"] .alert-box strong { color: #ef5350; }
+
+/* Variants */
+.alert-box.info {
+    background-color: #f5f5f5;
+    border-left-color: var(--primary);
+    color: #333;
+}
+:root[data-theme="dark"] .alert-box.info {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.alert-box.blue {
+    background-color: #e3f2fd;
+    border-left-color: #2196f3;
+    color: #0d47a1;
+}
+:root[data-theme="dark"] .alert-box.blue {
+    background-color: #15202b;
+    border-left-color: #1e88e5;
+    color: #90caf9;
+}
+
+.alert-box.orange {
+    background-color: #fff3e0;
+    border-left-color: #ff9800;
+    color: #e65100;
+}
+:root[data-theme="dark"] .alert-box.orange {
+    background-color: #2d261a;
+    border-left-color: #fb8c00;
+    color: #ffcc80;
+}
+
+.alert-box.red {
+    background-color: #ffebee;
+    border-left-color: #ef5350;
+    color: #c62828;
+}
+:root[data-theme="dark"] .alert-box.red {
+    background-color: #2c1a1a;
+    border-left-color: #e53935;
+    color: #ef9a9a;
+}
+
+/* -----------------------------------------------------------
+   3. Budget Box Component
+   ----------------------------------------------------------- */
+.budget-box {
+    background: var(--bg-budget);
+    border: 1px solid var(--border-budget);
+    border-left: 5px solid #4caf50;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+}
+
+.budget-box strong { color: var(--text-budget); font-size: 1.1em; }
+
+/* -----------------------------------------------------------
+   4. Timeline Component
+   ----------------------------------------------------------- */
+.timeline-item {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 30px;
+    border-left: 2px solid var(--timeline-line);
+}
+
+.timeline-item:last-child {
+    border-left: 2px solid transparent;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--timeline-dot-bg);
+    border: 3px solid var(--accent); /* Uses accent color */
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover::before {
+    background: var(--accent);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+}
+
+.time {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+    font-family: Consolas, Monaco, monospace;
+}
+
+.location { 
+    font-weight: bold; 
+    font-size: 16px; 
+    color: var(--primary); 
+    display: inline-block; 
+    margin-right: 8px;
+}
+
+.transport { 
+    font-size: 12px; 
+    color: white; 
+    background: #666; 
+    padding: 3px 8px; 
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+.desc { 
+    font-size: 15px; 
+    color: var(--secondary); 
+    margin-top: 8px; 
+    line-height: 1.6; 
+}
+
+/* -----------------------------------------------------------
+   5. Photo Tip Component
+   ----------------------------------------------------------- */
+.photo-tip {
+    margin-top: 15px;
+    background: var(--bg-tip);
+    border: 1px solid var(--border-tip);
+    border-radius: var(--radius);
+    padding: 15px;
+    font-size: 14px;
+    color: var(--text-tip);
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-tip::after {
+    content: '📷';
+    position: absolute;
+    right: -10px;
+    bottom: -15px;
+    font-size: 80px;
+    opacity: 0.05;
+    transform: rotate(-15deg);
+    pointer-events: none;
+}
+
+.photo-tip strong { 
+    display: block; 
+    margin-bottom: 5px; 
+    color: var(--text-tip);
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* -----------------------------------------------------------
+   6. Header Banner Component
+   ----------------------------------------------------------- */
+.header-banner {
+    background: linear-gradient(135deg, var(--accent) 0%, #333 100%); /* Fallback gradient */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(255,255,255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.header-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin-top: 0;
+}
+
+.header-subtitle {
+    font-size: 14px; 
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.tag-row { 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    flex-wrap: wrap; 
+}
+
+.tag { 
+    background: rgba(255, 255, 255, 0.15); 
+    backdrop-filter: blur(5px);
+    padding: 6px 12px; 
+    border-radius: 20px; 
+    font-size: 13px; 
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.2s;
+}
+
+.tag:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* -----------------------------------------------------------
+   7. Footer Note Component
+   ----------------------------------------------------------- */
+.page-footer-note {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.page-footer-note p {
+    margin: 5px 0;
+}
+
+.page-footer-note p:last-child {
+    margin-top: 10px;
+}
+
+:root[data-theme="dark"] .page-footer-note {
+    color: #666;
+    border-top-color: #333;
+}

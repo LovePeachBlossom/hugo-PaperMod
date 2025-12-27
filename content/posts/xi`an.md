@@ -10,140 +10,21 @@ passwordHint: "暂无"
 ---
 
 <style>
-/* 纯离线样式表 - 确保无网络环境下也能完美显示 */
 :root {
-    --primary: #8B1E1E; /* 故宫红/城墙红 */
-    --secondary: #D4AF37; /* 帝王金 */
-    --dark: #2C3E50;
-    --light: #F9F9F9;
-    --text: #333;
-    --gray: #666;
+    /* Post-specific Accent Colors */
+    --accent: #8B1E1E; /* 故宫红 */
+    --accent-secondary: #D4AF37; /* 帝王金 */
 }
 
-.alert-box {
-    background-color: #fff8e1;
-    border: 1px solid #ffecb3;
-    color: #856404;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-bottom: 15px;
+:root[data-theme="dark"] {
+    --accent: #ff8a80; /* 亮红 */
+    --accent-secondary: #ffd54f; /* 亮金 */
 }
-
-.alert-box strong { color: #d32f2f; }
-
-.timeline-item {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 25px;
-    border-left: 2px solid #e0e0e0;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -6px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
-    background: var(--secondary);
-    border-radius: 50%;
-}
-
-.time {
-    font-weight: bold;
-    color: var(--primary);
-    font-size: 16px;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.location { 
-    font-weight: bold; 
-    font-size: 15px; 
-    color: #000; 
-    display: inline-block; 
-    margin-right: 5px;
-}
-
-.transport { 
-    font-size: 12px; 
-    color: var(--gray); 
-    background: #eee; 
-    padding: 2px 6px; 
-    border-radius: 4px;
-}
-
-.desc { 
-    font-size: 14px; 
-    color: #555; 
-    margin-top: 5px; 
-}
-
-.photo-tip {
-    margin-top: 8px;
-    background: #f0f7ff;
-    border-left: 3px solid #007bff;
-    padding: 8px;
-    font-size: 13px;
-    color: #004085;
-}
-
-.photo-tip strong { display: block; margin-bottom: 2px; }
-
-.bf-guide {
-    background: #2c3e50;
-    color: #ecf0f1;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 15px 0;
-}
-
-.bf-guide h2 { color: #f1c40f; border-color: #f1c40f; }
-
-.skill-item {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #34495e;
-    padding-bottom: 10px;
-}
-
-.skill-title { 
-    color: #f1c40f; 
-    font-weight: bold; 
-    margin-bottom: 5px; 
-    display: block;
-}
-
-.tag-row { 
-    margin-top: 15px; 
-    display: flex; 
-    justify-content: center; 
-    gap: 8px; 
-    flex-wrap: wrap; 
-}
-
-.tag { 
-    background: rgba(139, 30, 30, 0.1); 
-    padding: 4px 10px; 
-    border-radius: 20px; 
-    font-size: 12px; 
-    color: var(--primary);
-}
-
-.budget-box {
-    background: #e8f5e9;
-    border-left: 4px solid #4caf50;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 4px;
-}
-
-.budget-box strong { color: #2e7d32; }
 </style>
 
-<div style="background: linear-gradient(135deg, #8B1E1E, #5e1212); color: white; padding: 30px 20px; text-align: center; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(139, 30, 30, 0.3);">
-    <h1 style="font-size: 24px; margin-bottom: 10px; letter-spacing: 1px;">🏯 西安冬日汉服·特种兵情侣攻略</h1>
-    <p style="font-size: 14px; opacity: 0.9;">2025优化版｜超详细｜不依赖具体时间</p>
+<div class="header-banner">
+    <h1 class="header-title">🏯 西安冬日汉服·特种兵情侣攻略</h1>
+    <p class="header-subtitle">2025优化版｜超详细｜不依赖具体时间</p>
     <div class="tag-row">
         <span class="tag">三天两夜</span>
         <span class="tag">不走回头路</span>
@@ -152,7 +33,7 @@ passwordHint: "暂无"
     </div>
 </div>
 
-<div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary);">
+<div class="alert-box info">
     <strong>📍 定位说明：</strong>执行级攻略，针对<strong>第一次来西安 + 冬季 + 汉服拍摄 + 情侣 + 特种兵节奏</strong>。<br>
     <strong>核心目标：</strong>出片率高 + 情绪价值满分 + 她不冷不累不烦。<br>
     <strong>2025更新点：</strong>融入最新汉服店趋势、门票价格、冬季天气数据、保暖升级方案、美食优化、交通小贴士。
@@ -399,7 +280,7 @@ passwordHint: "暂无"
 
 ## 六、冬季美食攻略（暖身+情绪回血版）
 
-<div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #2196f3;">
+<div class="alert-box blue">
     <strong>💡 原则：</strong><strong>热食优先</strong>（冬天拍汉服后，必吃热汤/热馍回血）。不追网红，只求稳妥+高性价比。<br>
     <strong>💰 总预算：</strong>两人一天200-300元。<br>
     <strong>📅 2025趋势：</strong>回民区小吃更注重清真+健康，甑糕等甜品冬季热卖。
@@ -515,7 +396,7 @@ passwordHint: "暂无"
 
 ### 四、明确不推荐（直接避雷）
 
-<div class="alert-box" style="background-color: #ffebee; border-color: #ef5350;">
+<div class="alert-box red">
     <strong>❌ 回民街主街随便进一家</strong>（游客多，贵+不鲜）。<br>
     <strong>❌ 切好装盒的水果</strong>（尤其"金西梅"，易坏+贵）。<br>
     <strong>❌ 景区内"非遗""百年老店"大字招牌</strong>（营销坑）。<br>
@@ -539,7 +420,7 @@ passwordHint: "暂无"
 
 ## 七、必拍清单（终极版｜离开前核对）
 
-<div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ff9800;">
+<div class="alert-box orange">
     <strong>📋 离开前核对，确保不遗漏：</strong>
 </div>
 
@@ -609,7 +490,7 @@ passwordHint: "暂无"
 
 ---
 
-<div style="text-align: center; font-size: 12px; color: #999; padding: 20px; margin-top: 30px; border-top: 1px solid #eee;">
+<div class="page-footer-note">
     <p>祝出片！祝甜蜜！❄️❤️</p>
-    <p style="margin-top: 10px;">Generated for Zhengzhou-Xi'an Winter Trip 2025</p>
+    <p>Generated for Zhengzhou-Xi'an Winter Trip 2025</p>
 </div>
