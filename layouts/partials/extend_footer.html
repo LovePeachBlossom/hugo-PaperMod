@@ -8,8 +8,8 @@
 <!-- 隐藏播放器，只保留音乐功能 -->
 <meting-js
     server="netease"
-    type="playlist"
-    id="26093064"
+    type="song"
+    id="28191836"
     fixed="false"
     autoplay="true"
     loop="all"
@@ -22,68 +22,106 @@
     style="display: none;">
 </meting-js>
 
-<!-- 右上角音符控制按钮 -->
-<div id="music-control" style="position: fixed; top: 20px; right: 20px; z-index: 999999; cursor: pointer;">
-    <button id="music-toggle" style="
-        background: rgba(255, 61, 61, 0.8);
-        border: none;
-        color: white;
+<style>
+    #music-control {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 999999;
+    }
+    
+    #music-toggle {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        font-size: 24px;
         cursor: pointer;
+        background: transparent;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    " title="点击控制音乐播放">
-        🎵
-    </button>
+        position: relative;
+        z-index: 100;
+    }
+
+    #music-toggle:hover {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 2px var(--primary));
+    }
+
+    /* 旋转动画 */
+    .music-rotating {
+        animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    /* 音乐符号 */
+    .music-note-icon {
+        width: 24px;
+        height: 24px;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<!-- 右上角音符控制按钮 -->
+<div id="music-control">
+    <div id="music-toggle" title="点击控制音乐播放">
+        <div class="music-note-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="100%" height="100%">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+        </div>
+    </div>
 </div>
 
 <script>
 // 等待 APlayer 加载完成
-setTimeout(function() {
-    var musicToggle = document.getElementById('music-toggle');
-    var aplayer = document.querySelector('meting-js').__controller;
+var checkAplayerInterval = setInterval(function() {
+    var metingElement = document.querySelector('meting-js');
+    if (!metingElement) return; // 元素还没加载出来
+
+    // 尝试获取 aplayer 实例，兼容不同版本的 meting-js
+    var aplayer = metingElement.aplayer || metingElement.__controller;
     
     if(aplayer) {
+        clearInterval(checkAplayerInterval); // 找到了，停止轮询
+        console.log("Music player initialized");
+
+        var musicToggle = document.getElementById('music-toggle');
+        var musicIcon = musicToggle.querySelector('.music-note-icon');
+        
+        // 初始状态检查
+        if(!aplayer.audio.paused) {
+            musicIcon.classList.add('music-rotating');
+        }
+
         // 点击按钮控制播放/暂停
         musicToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             if(aplayer.audio.paused) {
                 aplayer.play();
-                musicToggle.style.background = 'rgba(255, 61, 61, 0.8)';
             } else {
                 aplayer.pause();
-                musicToggle.style.background = 'rgba(150, 150, 150, 0.8)';
             }
         });
         
-        // 页面加载自动播放
-        aplayer.play();
-        
-        // 监听播放/暂停事件，更新按钮样式
+        // 监听播放/暂停事件，更新样式
         aplayer.audio.addEventListener('play', function() {
-            musicToggle.style.background = 'rgba(255, 61, 61, 0.8)';
+            musicIcon.classList.add('music-rotating');
         });
         
         aplayer.audio.addEventListener('pause', function() {
-            musicToggle.style.background = 'rgba(150, 150, 150, 0.8)';
+            musicIcon.classList.remove('music-rotating');
         });
     }
-}, 1000);
-
-// 鼠标悬停效果
-document.getElementById('music-toggle').addEventListener('mouseenter', function() {
-    this.style.transform = 'scale(1.1)';
-});
-
-document.getElementById('music-toggle').addEventListener('mouseleave', function() {
-    this.style.transform = 'scale(1)';
-});
+}, 500); // 每 500ms 检查一次
 
 (function() {
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
